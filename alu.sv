@@ -5,7 +5,7 @@ module alu #(parameter N = 64)
 			 output logic zero);
 
 	logic [N-1:0] res;
-	
+
 	always_comb begin
 		case(ALUControl)
 			4'b0000: res = a & b;
@@ -16,9 +16,9 @@ module alu #(parameter N = 64)
 			4'b1100: res = ~(a | b);
 			default: res = a;
 		endcase
-		
+
 		result = res;
 		zero = ~|res;
 	end
-		
+
 endmodule
