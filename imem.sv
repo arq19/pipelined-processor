@@ -6,22 +6,29 @@ module imem #(parameter N = 32)
 	
 	initial begin
 		ROM = '{default:0};
-		ROM[0:13] = '{
-				32'h8b0603e0, 	// add	x0, xzr, x6
-				32'h8b1f03e2, 	// add	x2, xzr, xzr
-				32'h00000000, 	// nop
-				32'hcb010000, 	// sub	x0, x0, x1
-				32'h8b010042, 	// add	x2, x2, x1
-				32'h00000000, 	// nop
-				32'hb5ffffa0, 	// cbnz	x0, c <loop>
+		ROM[0:3] = '{
+				32'h91003fe1, 	// addi	x1, xzr, #15
 				32'h00000000, 	// nop
 				32'h00000000, 	// nop
-				32'h00000000, 	// nop
-				32'hf80003e0, 	// stur	x0, [xzr, #0]
-				32'hf80083e2, 	// stur	x2, [xzr, #8]
-				32'hf80003c0, 	// stur	x0, [x30]
-				32'hf80083c2 	// stur	x2, [x30, #8]
-			};
+				32'hf8000001 	// stur	x1, [x0, #0]
+				};
+		
+//		ROM[0:13] = '{
+//				32'h8b0603e0, 	// add	x0, xzr, x6
+//				32'h8b1f03e2, 	// add	x2, xzr, xzr
+//				32'h00000000, 	// nop
+//				32'hcb010000, 	// sub	x0, x0, x1
+//				32'h8b010042, 	// add	x2, x2, x1
+//				32'h00000000, 	// nop
+//				32'hb5ffffa0, 	// cbnz	x0, c <loop>
+//				32'h00000000, 	// nop
+//				32'h00000000, 	// nop
+//				32'h00000000, 	// nop
+//				32'hf80003e0, 	// stur	x0, [xzr, #0]
+//				32'hf80083e2, 	// stur	x2, [xzr, #8]
+//				32'hf80003c0, 	// stur	x0, [x30]
+//				32'hf80083c2 	// stur	x2, [x30, #8]
+//			};
 //		ROM[0:25] = '{32'hf8000000, 32'hf8008001,
 //				32'hf8010002, 32'hf8018003,
 //				32'hf8020004, 32'hf8028005,
