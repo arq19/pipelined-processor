@@ -14,11 +14,12 @@ module alu #(parameter N = 64)
 			4'b0110: res = a - b;
 			4'b0111: res = b;
 			4'b1100: res = ~(a | b);
+			4'b1111: res = b;
 			default: res = a;
 		endcase
 
 		result = res;
-		zero = ~|res;
+		zero = ~|res + &ALUControl;
 	end
 
 endmodule

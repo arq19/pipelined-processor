@@ -14,6 +14,9 @@ module maindec( input logic [10:0] Op,
 				11'b101_1010_0???: // CBZ
 					{Reg2Loc, ALUSrc, MemtoReg, RegWrite,
 					 MemRead, MemWrite, Branch, ALUOp} = 9'b100000101;
+				11'b101_1010_1???: // CBNZ
+					{Reg2Loc, ALUSrc, MemtoReg, RegWrite,
+					 MemRead, MemWrite, Branch, ALUOp} = 9'b100000111;
 				11'b1?0_0101_1000: // SUB - ADD
 					{Reg2Loc, ALUSrc, MemtoReg, RegWrite,
 					 MemRead, MemWrite, Branch, ALUOp} = 9'b000100010;

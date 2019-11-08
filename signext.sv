@@ -6,8 +6,8 @@ module signext(input logic [31:0] a,
 	always_comb begin
 		opcode = a[31:21];
 		casez(opcode)
-			11'b101_1010_0???: y = {{46{a[23]}}, a[22: 5]};
-			11'b111_1100_00?0: y = {{56{a[20]}}, a[19:12]};
+			11'b101_1010_????: y = {{46{a[23]}}, a[22: 5]}; // CBZ - CBNZ
+			11'b111_1100_00?0: y = {{56{a[20]}}, a[19:12]}; // STUR - LDUR
 			default: y = '0;
 		endcase
 	end
