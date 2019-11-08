@@ -37,7 +37,7 @@ end
 
 Para checkear el correcto funcionamiento del procesador, se hizo una corrida del procedimiento de prueba utilizado anteriormente (ej1 guia2):
 
-```assembly_x86
+```Assembly
  1. stur x0,[x0]
  2. stur x1,[x0,#8]
  3. stur x2,[x0,#16]
@@ -81,7 +81,7 @@ Posterior a la implementacion de pipelines el procedimiento entero se logra en 3
 ## Ejercicio 2
 
 Se carga y simula el siguiente programa:
-```assembly_x86
+```Assembly
 1. add x0, xzr, x4
 2. add x1, x0, x4
 3. add x2, x1, x4
@@ -96,7 +96,7 @@ Luego de simularlo y no obtener los resultados esperados, vemos rapidamente que 
 
 Se procede a modificar el codigo buscando su correcto funcionamiento:
 
-```assembly_x86
+```Assembly
  1. add x0, xzr, x4
  2. nop -------------
  3. nop -------------
@@ -126,7 +126,10 @@ Address Data
 ```
 
 ## Ejercicio 3
-Se agregaron a nuestro procesador con pipeline dos instrucciones nuevas (ADDI y CBNZ). Se presenta a continuacion breve descripcion de los cambios introducidos para lograrlo.
+Se agregaron a nuestro procesador con pipeline dos instrucciones nuevas (ADDI y CBNZ).
+Se presenta a continuacion breve descripcion de los cambios introducidos para lograrlo.
+
+No se agregan entidades o señales que modifiquen el diagrama general del microprocesador.
 
 ### ADDI
 - **Signext:** Se modifica el modulo para que contemple el nuevo opcode y la nueva estructura I-Type
@@ -136,10 +139,10 @@ Se agregaron a nuestro procesador con pipeline dos instrucciones nuevas (ADDI y 
 - **Aludec:** Se relaciona el opcode del ADDI con la operacion de adicion de la ALU
 
 Procedimiento utilizado para testear la operacion:
-```
+```Assembly
 1. addi	x1, xzr, #15
-2. nop
-3. nop
+2. nop -------------
+3. nop -------------
 4. stur	x1, [x0, #0]
 ```
 
@@ -155,17 +158,17 @@ Procedimiento utilizado para testear la operacion:
   Luego, esta señal nos sirve para "negar" la señal Zero_E de forma que se produzca el branch cuando sea pertinente.
 
 Procedimiento utilizado para testear la operacion:
-```
- 1. add	x0, xzr, x6
- 2. add	x2, xzr, xzr
- 3. nop
- 4. loop: sub	x0, x0, x1
- 5. add	x2, x2, x1
- 6. nop
- 7. cbnz	x0, <loop>
- 8. nop
- 9. nop
-10. nop
-11. stur	x0, [xzr, #0]
-12. stur	x2, [xzr, #8]
+```Assembly
+ 1. add x0, xzr, x6
+ 2. add x2, xzr, xzr
+ 3. nop -------------
+ 4. loop: sub x0, x0, x1
+ 5. add x2, x2, x1
+ 6. nop -------------
+ 7. cbnz x0, <loop>
+ 8. nop -------------
+ 9. nop -------------
+10. nop -------------
+11. stur x0, [xzr, #0]
+12. stur x2, [xzr, #8]
 ```
