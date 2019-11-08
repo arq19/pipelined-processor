@@ -13,15 +13,11 @@ module regfile(input logic clk, we3,
 	end
 
 	always_comb begin
-		if (wa3 == ra1 && we3 && wa3 !== 31)
-			rd1 = wd3;
-		else
-			rd1 = regs[ra1];
+		if (wa3 == ra1 && we3 && wa3 !== 31) rd1 = wd3;
+		else rd1 = regs[ra1];
 		
-		if (wa3 == ra2 && we3 && wa3 !== 31)
-			rd2 = wd3;
-		else
-			rd2 = regs[ra2];
+		if (wa3 == ra2 && we3 && wa3 !== 31) rd2 = wd3;
+		else rd2 = regs[ra2];
 	end
 
 endmodule
